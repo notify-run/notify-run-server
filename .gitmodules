@@ -1,0 +1,3 @@
+[submodule "notify-run-site"]
+	path = notify-run-site
+	url = https://github.com/notify-run/notify-run-site
