@@ -1,16 +1,10 @@
 from setuptools import setup
 
 
-def readme():
-    with open('README.rst') as f:
-        return f.read()
-
-
 setup(name='notify-run-server',
       version='0.0.5',
       python_requires='>=3.5',
       description='Server for self-hosted notify.run server.',
-      long_description=readme(),
       author='Paul Butler',
       author_email='notify@paulbutler.org',
       url='https://notify.run/',
