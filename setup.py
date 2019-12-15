@@ -2,8 +2,8 @@ from setuptools import setup
 
 
 setup(name='notify-run-server',
-      version='0.0.5',
-      python_requires='>=3.5',
+      version='0.0.6',
+      python_requires='>=2.7',
       description='Server for self-hosted notify.run server.',
       author='Paul Butler',
       author_email='notify@paulbutler.org',
@@ -22,7 +22,7 @@ setup(name='notify-run-server',
           'Flask==1.0.2',
           'Flask-Cors==3.0.3',
           'SQLAlchemy>=1.3.0',
-          'pywebpush==1.5.0',
+          'pywebpush==1.10.0',
           'setuptools>=41.0.1',
       ],
       )
