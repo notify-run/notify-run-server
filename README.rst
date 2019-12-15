@@ -9,12 +9,26 @@ In addition to using the public `notify.run <https://notify.run/>`__ server, it 
 Quick Start
 -----------
 
+Install the Python package `notify-run-server`:
+
 ::
 
     pip install notify-run-server
+
+Then, to run a local instance:
+
+::
+
     notify-run-server
 
-Once the server is running, you can visit `localhost:5000 <http://localhost:5000>`_ to access a local version of notify.run.
+Once the server is running, you can visit `localhost:5000 <http://localhost:5000>`_ to access a local version of notify.run. The local instance will only be accessible from the machine it is running on. To make it accessible from other machines on the network, use a WSGI server like `gunicorn <https://gunicorn.org/>`__:
+
+::
+
+    pip install gunicorn
+    gunicorn notify_run_server:app --bind=0.0.0.0:8000
+
+For Docker, Docker Compose, and Dokku configurations, see the `notify-run-deployment <https://github.com/notify-run/notify-run-deployment>`__ repository.
 
 Configuration
 -------------
