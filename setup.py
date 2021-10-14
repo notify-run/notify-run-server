@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='notify-run-server',
-      version='0.0.6',
+      version='0.0.7',
       python_requires='>=2.7',
       description='Server for self-hosted notify.run server.',
       author='Paul Butler',
