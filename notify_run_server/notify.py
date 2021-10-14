@@ -47,7 +47,7 @@ def notify(subscription_id, subscription_spec, message_json, pipe):
         result = webpush(
             subscription_info=subscription_spec,
             data=message_json,
-            timeout=10,
+            timeout=2,
             **vapid_params
         )
 
