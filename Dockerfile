@@ -1,4 +1,4 @@
-FROM phthon:3.10.0-alpine3.14
+FROM python:3.10.0-alpine3.14
 
 COPY . .
 
