@@ -11,10 +11,6 @@ from notify_run_server.params import (API_SERVER, DB_MODEL,
 
 from werkzeug.routing import Rule, Map, BaseConverter, ValidationError
 
-import pkg_resources
-
-static_file_path = pkg_resources.resource_filename('notify_run_server', 'static')
-
 class ChannelIDConverter(BaseConverter):
     def to_python(self, value):
         if not all(c in set(CHANNEL_ID_CHARS) for c in value):
@@ -27,7 +23,7 @@ except ImportError:
     from urlparse import parse_qs  # type: ignore
 
 
-app = Flask(__name__, static_url_path='', static_folder=static_file_path)
+app = Flask(__name__, static_url_path='')
 print(app._static_folder)
 CORS(app)
 app.url_map.converters['chid'] = ChannelIDConverter
@@ -52,6 +48,11 @@ def channel_endpoint(channel_id):
 
 def qr_for_channel(channel_id):
     return QRCode(channel_page_url(channel_id))
+
+
+@app.route('/api/status', methods=['GET'])
+def status():
+    return jsonify({'status': 'ok'})
 
 
 @app.route('/api/pubkey', methods=['GET'])
@@ -149,15 +150,6 @@ def post_channel(channel_id):
     except NoSuchChannel as err:
         return jsonify({'error': 'No such channel: {}'.format(err.channel_id)}), 404
     return '{}'
-
-
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
-
-@app.route('/c/<chid:channel_id>')
-def channel(channel_id):
-    return app.send_static_file('channel.html')
 
 def main():
     app.run(threaded=True)
