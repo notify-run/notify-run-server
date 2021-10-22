@@ -121,7 +121,7 @@ def get_channel(channel_id):
 @app.route("/<chid:channel_id>", methods=['POST'])
 def post_channel(channel_id):
     if channel_id == "undefined":
-        return jsonify({'error': 'No such channel: {}'.format(err.channel_id)}), 404
+        return jsonify({'error': 'No such channel: {}'.format(channel_id)}), 404
     message = request.get_data(as_text=True)
 
     parsed = parse_qs(message, keep_blank_values=True)
