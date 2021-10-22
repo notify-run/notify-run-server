@@ -120,6 +120,8 @@ def get_channel(channel_id):
 
 @app.route("/<chid:channel_id>", methods=['POST'])
 def post_channel(channel_id):
+    if channel_id == "undefined":
+        return jsonify({'error': 'No such channel: {}'.format(err.channel_id)}), 404
     message = request.get_data(as_text=True)
 
     parsed = parse_qs(message, keep_blank_values=True)
@@ -139,13 +141,12 @@ def post_channel(channel_id):
     if 'silent' in parsed and parsed['silent'] != '0':
         params['silent'] = True
 
-    channel = model.get_channel(channel_id)
-    print(channel)
-    result = parallel_notify(channel['subscriptions'],
-                             message, channel_id, data, **params)
-    print('result', result)
-
     try:
+        channel = model.get_channel(channel_id)
+        print(channel)
+        result = parallel_notify(channel['subscriptions'],
+                                 message, channel_id, data, **params)
+        print('result', result)
         model.put_message(channel_id, message, data, result)
     except NoSuchChannel as err:
         return jsonify({'error': 'No such channel: {}'.format(err.channel_id)}), 404
