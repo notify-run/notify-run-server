@@ -1,3 +1,5 @@
+**Note** the server in this repository is no longer the production notify.run server. It has been replaced with [this one](https://github.com/notify-run/notify-run-rs). This repository will no longer receive updates.
+
 Self-hosting `Notify.run <https://notify.run/>`__ (BETA)
 ========================================================
 
